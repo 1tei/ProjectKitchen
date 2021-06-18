@@ -4,27 +4,31 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta charset="utf-8" />
-    <title>RM20004</title>
+    <title>Project Kitchen</title>
     <link rel="stylesheet" href="css/StyleSheet.css" />
     <link rel="stylesheet" href="css/reset.css" />
     <script src="js/Script.js"></script>
-
+    <link href="/CSS/main.css" rel="stylesheet">
+    <link href="/CSS/stylesheet.css" rel="stylesheet">
+    <link href="/JS/Script.js">
 </head>
 <body>
     <section class="header" id="header">
         <div class="header-bg">
             <header>
-                <h2>P:K</h2>
                 <ul class="main-menu">
-                    <li class="upper-menu active"><a href="#header">HOME</a></li>
+                    <li class="upper-menu active"><a href="/">HOME</a></li>
                     <li class="upper-menu"><a href="#gallery">GALLERY</a></li>
-                    <li class="upper-menu image"><img id="logo-image" src="images/logowhite.png" alt="logo"></li>
+                    <li class="upper-menu"><a href="#top">TOP RECIPES</a></li>
+                    <li class="upper-menu image"><img id="logo-image" src="/images/logowhite.png" alt="logo"></li>
                     <li class="upper-menu"><a href="#chefs">CHEFS</a></li>
-                    <li class="upper-menu"><a href="#footer">CONTACT US</a></li>
-                    <li class="upper-menu"><p id="clock"></p></li>
+                    <li class="upper-menu"><a href="/recipes" >RECIPES</a></li>
+                    <li class="upper-menu"><a href="#footer">VIDEOS</a></li>
+                    <li class="upper-menu">LOGIN</a></li>
                 </ul>
             </header>
         </div>
+        <p>LEARN MORE</p>
     </section>
 
     <section class="banner">
@@ -41,8 +45,8 @@
         </script>
     </section>
 
-    <section class="video">
-        <h2>N E W E S T * V I D E O & R E C I P E</h2>
+    {{-- <section class="video">
+        <h2>N E W E S T  V I D E O S & R E C I P E S</h2>
         <div class="frame">
         </div>
         <div>
@@ -75,7 +79,7 @@ General Tso's sauce:
 - thinly sliced green onion for garnish</pre></li>
             </ol>
         </div>
-    </section>
+    </section> --}}
 
     <section class="gallery" id="gallery">
         <h2>GALLERY</h2>
@@ -125,7 +129,7 @@ General Tso's sauce:
         </div>
     </section>
 
-    <section class="chefs" id="chefs">
+    {{-- <section class="chefs" id="chefs">
         <div>
             <h2>C H E F S</h2>
             <ul class="hide" tabindex="0">
@@ -159,89 +163,22 @@ General Tso's sauce:
 
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <section id="footer" class="footer">
     <div class="footer-container">
-      <div class="external">
-        <h2 class="footer">LINKS</h2>
-            <ol>
-                <li><a href="https://www.bingingwithbabish.com/">ANDREW</a></li>
-                <li><a href="https://www.thecookingguy.com/#tv-show-stcgo-show-recipe-homepage">SAM</a></li>
-                <li><a href="https://adamliaw.com/">ADAM</a></li>
-                <li><a href="https://www.ethanchlebowski.com/">ETHAN</a></li>
-                <li><a href="https://slimpalate.com/">JOSHUA</a></li>
-            </ol>
-      </div>
-      <div class="contacts">
-        <h2 class="footer">CONTACTS</h2>
-            <ul>
-                <li><a class="link" href="https://www.gmail.com"><img src="images/gmailLogo.jpg" alt="bilde"><span></span><h3>REINIS.TEI@GMAIL.COM</h3></a></li>
-                <li><a class="link" href="https://www.twitter.com"><img src="images/twitterLogo.jpg" alt="bilde"><span></span><h3>@REINISTEI</h3></a></li>
-                <li><a class="link" href="https://www.instagram.com"><img src="images/instagramLogo.jpg" alt="bilde"><span></span><h3>REINISMOL</h3></a></li>
-            </ul>
-      </div>
 
-      <div class="input-field">
-          <h2 class="footer">SEND A MESSAGE</h2>
-          <div class="container">
-              <form id="myForm" onsubmit="return false">
-                  <div class="row">
-                      <div class="col-25">
-                          <label for="fname">FIRST NAME</label>
-                      </div>
-                      <div class="col-75">
-                          <input type="text" id="fname" name="firstname" placeholder="YOUR NAME.">
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-25">
-                          <label for="lname">LAST NAME</label>
-                      </div>
-                      <div class="col-75">
-                          <input type="text" id="lname" name="lastname" placeholder="YOUR LAST NAME.">
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-25">
-                          <label for="country">COUNTRY</label>
-                      </div>
-                      <div class="col-75">
-                          <select id="country" name="country">
-                              <option value="latvia">LATVIA</option>
-                              <option value="lithuania">LITHUANIA</option>
-                              <option value="estonia">ESTONIA</option>
-                          </select>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-25">
-                          <label for="subject">SUBJECT</label>
-                      </div>
-                      <div class="col-75">
-                          <textarea id="subject" name="subject" placeholder="WRITE SOMETHING.." style="height:50px"></textarea>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <input type="submit" value="Submit" onclick="allLetter()">
-                  </div>
-              </form>
-          </div>
-          <span id="txtform"> </span>
-      </div>
-    </div>
-    </section>
+                <div class="contacts">
+                    <h2>CONTACTS</h2>
+                        <ul>
+                            <li><a class="link" href="https://www.gmail.com"><img src="images/gmailLogo.jpg" alt="bilde"><span></span><h3>REINIS.TEI@GMAIL.COM</h3></a></li>
+                            <li><a class="link" href="https://www.twitter.com"><img src="images/twitterLogo.jpg" alt="bilde"><span></span><h3>@REINISTEI</h3></a></li>
+                            <li><a class="link" href="https://www.instagram.com"><img src="images/instagramLogo.jpg" alt="bilde"><span></span><h3>REINISMOL</h3></a></li>
+                        </ul>
+                </div>
 
     <footer class="end">
         <h1>COPYRIGHT @ REINIS MOLODCOVS 2021</h1>
-        <div class="mail">
-            <h2>Input a valid date [dd/mm/yyyy]</h2>
-            <form class="footer-form" name="form1" onsubmit="return false">
-                    <input type='text' name='text1' />
-                    <input type="submit" value="Submit" onclick="validatedate(document.form1.text1)">
-            </form>
-            <span id="footer-span"></span>
-        </div>
     </footer>
 </body>
 </html>
