@@ -37,25 +37,22 @@
 
 
     <section class="recipes centrs" id="recipes">
-            <h4 style="font-size:20px">EDIT POST </H4>
+            <h4 style="font-size:20px">EDIT VIDEO</H4>
             <br><br>
             <h2>
-            <form method="POST" action="{{action([App\Http\Controllers\RecipeController::class, 'update'], $recipe->id)  }}">
+            <form method="POST" action="{{action([App\Http\Controllers\VideoController::class, 'update'], $video->id)  }}">
                 @csrf
-               <input type="hidden" name="id" value="{{ $recipe->id }}">
+               <input type="hidden" name="id" value="{{ $video->id }}">
                <input type="hidden" name="Author" value="{{Auth::user()->id}}">
 
-               <label for="Title">Title: </label><br>
-               <textarea type="text" name="Title" id="Title" value="{{ $recipe->Title }}"></textarea>
+                    <label for="Title">Title: </label><br>
+                    <textarea type="text" name="Title" id="Title" value="{{ $video->Title }}"></textarea>
                <br>
-               <label for="Description">Description: </label><br>
-               <textarea type="text" name="Description" id="Description" value="{{ $recipe->Description }}"></textarea>
+                    <label for="Description">Description: </label><br>
+                    <textarea type="text" name="Description" id="Description" value="{{ $video->Description }}"></textarea>
                <br>
-               <label for="Content">Content: </label><br>
-               <textarea type="text" name="Content" id="Content" value="{{ $recipe->Content }}"></textarea>
-               <br>
-               <label for="Photo">Photo: </label><br>
-               <textarea type="text" name="Photo" id="Photo" value="{{ $recipe->Photo }}"></textarea>
+                    <label for="Video_link">Video Link: </label><br>
+                    <textarea type="text" name="Video_link" id="Video_link" value="{{ $video->Video_link }}"></textarea>
                <br><br><br>
 
                <p> <input type="submit" value="CONFIRM"> </p>

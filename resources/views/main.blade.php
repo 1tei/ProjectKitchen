@@ -18,11 +18,16 @@
             <header>
                 <ul class="main-menu">
                     <li class="upper-menu active"><a href="/">HOME</a></li>
-                    <li class="upper-menu"><a href="#gallery">GALLERY</a></li>
+                    <li class="upper-menu"><a href="/#gallery">GALLERY</a></li>
                     <li class="upper-menu image"><img id="logo-image" src="/images/logowhite.png" alt="logo"></li>
                     <li class="upper-menu"><a href="/recipes" >RECIPES</a></li>
-                    <li class="upper-menu"><a href="#footer">VIDEOS</a></li>
-                    <li class="upper-menu"><a href="/login">LOGIN</a></li>
+                    <li class="upper-menu"><a href="/video">VIDEOS</a></li>
+                    @if (!Auth::check())
+                        <li class="upper-menu"><a href="/login">LOGIN</a></li>
+                    @endif
+                    @if (Auth::check())
+                        <li class="upper-menu"><a href="/profile">PROFILE</a></li>
+                    @endif
                 </ul>
             </header>
         </div>
@@ -42,8 +47,18 @@
         </script>
     </section>
 
+    <div class="inbetween" align="center">
+        @if (!Auth::check())
+        <h1> Please LOGIN to use the full site! </h1>
+        @endif
+
+        <h2>This is an experimental website aimed at people who enjoy culinary, just like the team that created it. We will try to keep up to date to our
+            favorite youtubers and personalities. Adding new recipes every week and making new content and interactions possible!<h2>
+    </div>
 
     <section class="gallery" id="gallery">
+
+
         <h2>GALLERY</h2>
         <div class="slideshow-container">
 

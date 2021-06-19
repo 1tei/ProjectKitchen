@@ -22,8 +22,13 @@
                     <li class="upper-menu"><a href="/#gallery">GALLERY</a></li>
                     <li class="upper-menu image"><img id="logo-image" src="/images/logowhite.png" alt="logo"></li>
                     <li class="upper-menu"><a href="/recipes" >RECIPES</a></li>
-                    <li class="upper-menu"><a href="#footer">VIDEOS</a></li>
-                    <li class="upper-menu"><a href="/login">LOGIN</a></li>
+                    <li class="upper-menu"><a href="/video">VIDEOS</a></li>
+                    @if (!Auth::check())
+                        <li class="upper-menu"><a href="/login">LOGIN</a></li>
+                    @endif
+                    @if (Auth::check())
+                        <li class="upper-menu"><a href="/profile">PROFILE</a></li>
+                    @endif
                 </ul>
             </header>
         </div>
@@ -31,11 +36,9 @@
 
 
     <section class="recipes centrs " id="recipes">
-
         @if (Auth::user()->role == 'Editor' or Auth::user()->role == 'Admin')
-            <a href="/recipes/create"> Create new Recipe. </a>
+            <a class="sptext" href="/recipes/create"> CREATE A NEW RECIPE </a>
         @endif
-
             @foreach ($Recipes as $recipe)
 
             <div class="flex-container">
@@ -47,7 +50,6 @@
                     <h2>{{$recipe->Description}}<br></h2>
 
                 <br><br><a href="/recipe/{{$recipe->id}}">View Recipe</a>
-
                 @if (Auth::user()->role == 'Editor' or Auth::user()->role == 'Admin')
                 <a href="/recipe/edit/{{$recipe->id}}"> Edit Recipe Information. </a>
                 @if (Auth::user()->role == 'Admin')

@@ -37,35 +37,33 @@
 
 
     <section class="recipes centrs" id="recipes">
-            <h4 style="font-size:20px">EDIT POST </H4>
+            <h4 style="font-size:20px">ADD A NEW VIDEO</h4>
+            <br><br><h2>
+            <form method="POST" action="{{action([App\Http\Controllers\VideoController::class, 'store']) }}">
+                @csrf
+                <input type="hidden" name="Author" value="{{ Auth::user()->id }}">
+                <input type="hidden" name="Views" value="1">
+
+                <label for="Title">Title: </label><br>
+                <textarea type="text" name="Title"></textarea>
+            <br>
+                <label for="Description">Description: </label><br>
+                <textarea type="text" name="Description"></textarea>
+            <br>
+                <label for="Video_link">Video Link: </label><br>
+                <textarea type="text" name="Video_link" ></textarea>
+            <br>
+            <br><br><br><input type="submit" value="CREATE">
+            </h2>
+            </form>
+            <br><br>
+            <hr>
             <br><br>
             <h2>
-            <form method="POST" action="{{action([App\Http\Controllers\RecipeController::class, 'update'], $recipe->id)  }}">
-                @csrf
-               <input type="hidden" name="id" value="{{ $recipe->id }}">
-               <input type="hidden" name="Author" value="{{Auth::user()->id}}">
+            <x-auth-validation-errors/>
+            </h2>
 
-               <label for="Title">Title: </label><br>
-               <textarea type="text" name="Title" id="Title" value="{{ $recipe->Title }}"></textarea>
-               <br>
-               <label for="Description">Description: </label><br>
-               <textarea type="text" name="Description" id="Description" value="{{ $recipe->Description }}"></textarea>
-               <br>
-               <label for="Content">Content: </label><br>
-               <textarea type="text" name="Content" id="Content" value="{{ $recipe->Content }}"></textarea>
-               <br>
-               <label for="Photo">Photo: </label><br>
-               <textarea type="text" name="Photo" id="Photo" value="{{ $recipe->Photo }}"></textarea>
-               <br><br><br>
 
-               <p> <input type="submit" value="CONFIRM"> </p>
-
-               </form>
-               <br><br>
-               <hr>
-               <br><br>
-               <x-auth-validation-errors/>
-               </h2>
 
     </section>
 

@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
+
 use App\models\RecipeModel;
-use App\models\IngredientModel;
-use App\models\RecipeRatingModel;
-use App\models\RecipeCommentModel;
+use App\models\VideoModel;
+use App\models\VideoCommentModel;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
-class RecipeController extends Controller
+class VideoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,9 +25,10 @@ class RecipeController extends Controller
         if (!Auth::check()){
             return view ('main');
         }
+
         else {
-            $Recipes = DB::table('Recipe')->get();
-            return view('recipe_page', compact('Recipes'));
+            $Video = DB::table('Video')->get();
+            return view('video', compact('Video'));
         }
     }
 
@@ -38,7 +39,7 @@ class RecipeController extends Controller
      */
     public function create()
     {
-       return view('recipe_create');
+       return view('video_add');
     }
 
     /**
@@ -53,21 +54,18 @@ class RecipeController extends Controller
         $rules = array (
             'Title' => 'required|min:5',
             'Description' => 'required|min:10',
-            'Content' => 'required|min:10',
-            'Photo' => 'required'
+            'Video_link' => 'required|min:15',
         );
 
         $this->validate($request, $rules);
 
-        $recipe = new RecipeModel();
-        $recipe->Author=$request->Author;
-        $recipe->Title=$request->Title;
-        $recipe->Description=$request->Description;
-        $recipe->Content=$request->Content;
-        $recipe->Views=$request->Views;
-        $recipe->Photo=$request->Photo;
-        $recipe->save();
-        return redirect('/recipes');
+        $video = new VideoModel;
+        $video->Author=$request->Author;
+        $video->Title=$request->Title;
+        $video->Description=$request->Description;
+        $video->Video_link=$request->Video_link;
+        $video->save();
+        return redirect('/video');
     }
 
     /**
@@ -78,9 +76,9 @@ class RecipeController extends Controller
      */
     public function show($id)
     {
-        $Recipes = DB::table('Recipe')->where('id', '=', $id)->get();
-        $Recipe_Comments = DB::table('Recipe')->join('Recipe_comments', 'Recipe.id', '=', 'Recipe_Comments.Post')->join('Users', 'Users.id', '=', 'Recipe_comments.Author')->where('Recipe.id', '=', $id)->get();
-        return view('single_recipe', compact('Recipes', 'Recipe_Comments'));
+        $Video = DB::table('Video')->where('id', '=', $id)->get();
+        $Video_Comments = DB::table('Video')->join('Video_comments', 'Video.id', '=', 'Video_Comments.Post')->join('Users', 'Users.id', '=', 'Video_comments.Author')->where('Video.id', '=', $id)->get();
+        return view('single_video', compact('Video', 'Video_Comments'));
     }
 
     /**
@@ -91,8 +89,8 @@ class RecipeController extends Controller
      */
     public function edit($id)
     {
-        $recipe = RecipeModel::findOrFail($id);
-        return view('recipe_edit',compact('recipe'));
+        $video = VideoModel::findOrFail($id);
+        return view('video_edit',compact('video'));
     }
 
     /**
@@ -107,20 +105,18 @@ class RecipeController extends Controller
         $rules = array (
             'Title' => 'required|min:5',
             'Description' => 'required|min:10',
-            'Content' => 'required|min:10',
-            'Photo' => 'required'
+            'Video_link' => 'required|min:15',
         );
 
         $this->validate($request, $rules);
 
-        $recipe = RecipeModel::find($id);
-        $recipe->Author=$request->Author;
-        $recipe->Title=$request->Title;
-        $recipe->Description=$request->Description;
-        $recipe->Content=$request->Content;
-        $recipe->Photo=$request->Photo;
-        $recipe->save();
-        return redirect('/recipes');
+        $video = VideoModel::find($id);
+        $video->Author=$request->Author;
+        $video->Title=$request->Title;
+        $video->Description=$request->Description;
+        $video->Video_link=$request->Video_link;
+        $video->save();
+        return redirect('/video');
     }
 
     /**
@@ -132,11 +128,8 @@ class RecipeController extends Controller
     public function destroy($id)
     {
 
-        IngredientModel::where('Ingredient_list.Recipe', $id)->delete();
-        RecipeCommentModel::where('Recipe_comments.Post', $id)->delete();
-        RecipeRatingModel::where('Recipe_ratings.Post', $id)->delete();
-
-        RecipeModel::findOrFail($id)->delete();
-        return redirect('/recipes');
+        VideoCommentModel::where('Video_comments.Post', $id)->delete();
+        VideoModel::findOrFail($id)->delete();
+        return redirect('/video');
     }
 }

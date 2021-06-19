@@ -321,8 +321,8 @@ section.recipes a {
 }
 
 section.recipes img{
-    height: 250px;
-    width: 210px;
+    height: 300px;
+    width: 240px;
     margin-bottom:20%;
     margin-left:15%;
     padding-right:20vh;
@@ -347,3 +347,43 @@ section.comments h2{
         text-align: center;
     }
 
+div.inbetween h2 {
+    font-family: Montserrat-Light;
+        font-size: 24px;
+        color:white;
+        text-align: center;
+        margin-left:30%;
+        margin-right:30%;
+        margin-bottom:15%;
+        margin-top:15%;
+}
+
+div.inbetween h1 {
+    font-family: Montserrat-Medium;
+        font-size: 28px;
+        color:white;
+        text-align: center;
+        margin-left:30%;
+        margin-right:30%;
+        margin-top:15%;
+}
+
+div.spcontainer {
+    text-align:center;
+    justify-content: center;
+    margin-left:35%;
+    margin-right:35%;
+}
+
+a.sptext {
+    font-size: 100px;
+    margin-bottom:5%;
+}
+
+img.single {
+    height: 300px;
+    width: 240px;
+    margin-bottom:20%;
+    margin-left:15%;
+    padding-right:20vh;
+}

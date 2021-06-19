@@ -19,11 +19,16 @@
             <header>
                 <ul class="main-menu">
                     <li class="upper-menu active"><a href="/">HOME</a></li>
-                    <li class="upper-menu"><a href="#gallery">GALLERY</a></li>
+                    <li class="upper-menu"><a href="/#gallery">GALLERY</a></li>
                     <li class="upper-menu image"><img id="logo-image" src="/images/logowhite.png" alt="logo"></li>
                     <li class="upper-menu"><a href="/recipes" >RECIPES</a></li>
-                    <li class="upper-menu"><a href="#footer">VIDEOS</a></li>
-                    <li class="upper-menu"><a href="/login">LOGIN</a></li>
+                    <li class="upper-menu"><a href="/video">VIDEOS</a></li>
+                    @if (!Auth::check())
+                        <li class="upper-menu"><a href="/login">LOGIN</a></li>
+                    @endif
+                    @if (Auth::check())
+                        <li class="upper-menu"><a href="/profile">PROFILE</a></li>
+                    @endif
                 </ul>
             </header>
         </div>
@@ -32,33 +37,34 @@
 
 
     <section class="recipes centrs" id="recipes">
-            <h1 style="font-size:20px">CREATE A NEW RECIPE POST:
-            <br><br>
+            <h4 style="font-size:20px">CREATE A NEW RECIPE POST:</h4>
+            <br><br><h2>
             <form method="POST" action="{{action([App\Http\Controllers\RecipeController::class, 'store']) }}">
                 @csrf
                 <input type="hidden" name="Author" value="{{ Auth::user()->id }}">
                 <input type="hidden" name="Views" value="1">
 
                 <label for="Title">Title: </label><br>
-                <input type="text" name="Title">
+                <textarea type="text" name="Title"></textarea>
             <br>
                 <label for="Description">Description: </label><br>
-                <input type="text" name="Description">
+                <textarea type="text" name="Description"></textarea>
             <br>
                 <label for="Content">Content: </label><br>
-                <input type="text" name="Content" >
+                <textarea type="text" name="Content" ></textarea>
+            <br>
+                <label for="Photo">Photo: </label><br>
+                <textarea type="text" name="Photo" ></textarea>
             <br>
             <br><br><br><input type="submit" value="CREATE">
             </h1>
             </form>
             <br><br>
             <hr>
-            <br><br>
+            <br><br></h2>
             <h2>
             <x-auth-validation-errors/>
             </h2>
-
-
 
     </section>
 

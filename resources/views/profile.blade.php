@@ -35,45 +35,31 @@
     </section>
 
 
-
+<div class="spcontainer">
     <section class="recipes centrs" id="recipes">
-            <h4 style="font-size:20px">EDIT POST </H4>
-            <br><br>
-            <h2>
-            <form method="POST" action="{{action([App\Http\Controllers\RecipeController::class, 'update'], $recipe->id)  }}">
-                @csrf
-               <input type="hidden" name="id" value="{{ $recipe->id }}">
-               <input type="hidden" name="Author" value="{{Auth::user()->id}}">
+            <h4 style="font-size:20px">YOUR PROFILE:<br><br><hr><br><br>
+                @foreach ($Profile as $User)
+                Username: {{$User->name}} <br>
+                Role: {{$User->role}} <br>
+                Email: {{$User->email}} <br></h4>
+                <x-button onclick="edit()">
+                    LOG OUT
+                </x-button>
 
-               <label for="Title">Title: </label><br>
-               <textarea type="text" name="Title" id="Title" value="{{ $recipe->Title }}"></textarea>
-               <br>
-               <label for="Description">Description: </label><br>
-               <textarea type="text" name="Description" id="Description" value="{{ $recipe->Description }}"></textarea>
-               <br>
-               <label for="Content">Content: </label><br>
-               <textarea type="text" name="Content" id="Content" value="{{ $recipe->Content }}"></textarea>
-               <br>
-               <label for="Photo">Photo: </label><br>
-               <textarea type="text" name="Photo" id="Photo" value="{{ $recipe->Photo }}"></textarea>
-               <br><br><br>
-
-               <p> <input type="submit" value="CONFIRM"> </p>
-
-               </form>
-               <br><br>
-               <hr>
-               <br><br>
-               <x-auth-validation-errors/>
-               </h2>
-
+                <script>
+                public function edit()
+                    {
+                        if (!\Auth::user()->active)
+                        {
+                            \Auth::logout();
+                            return redirect('/main');
+                        }
+                    }
+                </script>
+                @endforeach
     </section>
+</div>
 
 
-
-
-    <footer class="end">
-        <h1>COPYRIGHT @ REINIS MOLODCOVS 2021</h1>
-    </footer>
 </body>
 </html>

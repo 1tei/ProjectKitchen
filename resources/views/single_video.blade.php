@@ -36,23 +36,18 @@
 
 
     <section class="recipes centrs" id="recipes">
-        @foreach ($Recipes as $recipe)
-        <h4>{{$recipe->Title}} <br></h4><br><br>
-        <div class="flex-container">
-                <img class="single" src="{{$recipe->Photo}}" alt="picture">
-                <h2>{{$recipe->Content}}<BR><br>
-                 VIEWS: {{$recipe->Views}}
-        </div>
+        @foreach ($Video as $vid)
+        <h4>{{$vid->Title}} <br></h4>
+                <iframe width="560" height="315" src="{{$vid->Video_link}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         @endforeach
 
-        <form method="POST" action="{{action([App\Http\Controllers\CommentController::class, 'store'], $recipe->id)}}">
+        <form method="POST" action="{{action([App\Http\Controllers\VCommentController::class, 'store'], $vid->id)}}">
             @csrf
-            <input type="hidden" name="Author" value="{{ Auth::user()->id }}">
-            <input type="hidden" name="Post" value="{{$recipe->id}}"><h2>
-            <label for="Message">COMMENT:</label><br></h2>
-            <textarea type="text" name="Message"></textarea>
-
-        <br><br><br><input type="submit" value="CREATE">
+                <input type="hidden" name="Author" value="{{ Auth::user()->id }}">
+                <input type="hidden" name="Post" value="{{$vid->id}}">
+                <br><br><h2><label for="Message">COMMENT:</label><br></h2>
+                <textarea type="text" name="Message"></textarea>
+                <br><br><br><input type="submit" value="CREATE">
         </h1>
         </form>
         <br><br>
@@ -68,20 +63,23 @@
             <h2> COMMENTS </H2><BR><HR><BR><BR>
 
 
-            @foreach ($Recipe_Comments as $recipes)
-            <H2>{{$recipes->Message}}<br><BR><BR>
-            POSTED BY: {{$recipes->name}}</h2>
+            @foreach ($Video_Comments as $vcom)
+            <h2>{{$vcom->Message}}<br><BR><BR>
+            POSTED BY: {{$vcom->name}}</h2>
 
 
             @if (Auth::user()->role == 'Editor' or Auth::user()->role == 'Admin')
             <BR><BR>
-                <form method="POST" action="{{action([App\Http\Controllers\CommentController::class, 'destroy'], $recipe->id)}}">
+                <form method="POST" action="{{action([App\Http\Controllers\VCommentController::class, 'destroy'], $vid->id)}}">
                     @csrf @method('DELETE')
                 <input type="submit" value="delete"></form>
             @endif
 
-            </H2><BR><HR><BR><BR>
-        @endforeach
+
+        </H2><BR><HR><BR><BR>
+
+
+            @endforeach
     </section>
     <footer class="end">
         <h1>COPYRIGHT @ REINIS MOLODCOVS 2021</h1>

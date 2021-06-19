@@ -35,42 +35,39 @@
     </section>
 
 
+    <section class="recipes centrs " id="recipes">
 
-    <section class="recipes centrs" id="recipes">
-            <h4 style="font-size:20px">EDIT POST </H4>
-            <br><br>
-            <h2>
-            <form method="POST" action="{{action([App\Http\Controllers\RecipeController::class, 'update'], $recipe->id)  }}">
-                @csrf
-               <input type="hidden" name="id" value="{{ $recipe->id }}">
-               <input type="hidden" name="Author" value="{{Auth::user()->id}}">
+        @if (Auth::user()->role == 'Editor' or Auth::user()->role == 'Admin')
+            <a class="sptext" href="/video/add"> ADD A NEW VIDEO </a>
+        @endif
 
-               <label for="Title">Title: </label><br>
-               <textarea type="text" name="Title" id="Title" value="{{ $recipe->Title }}"></textarea>
-               <br>
-               <label for="Description">Description: </label><br>
-               <textarea type="text" name="Description" id="Description" value="{{ $recipe->Description }}"></textarea>
-               <br>
-               <label for="Content">Content: </label><br>
-               <textarea type="text" name="Content" id="Content" value="{{ $recipe->Content }}"></textarea>
-               <br>
-               <label for="Photo">Photo: </label><br>
-               <textarea type="text" name="Photo" id="Photo" value="{{ $recipe->Photo }}"></textarea>
-               <br><br><br>
+            @foreach ($Video as $vid)
 
-               <p> <input type="submit" value="CONFIRM"> </p>
+            <div class="flex-container">
+                <div>
 
-               </form>
-               <br><br>
-               <hr>
-               <br><br>
-               <x-auth-validation-errors/>
-               </h2>
+                    <iframe width="560" height="315" src="{{$vid->Video_link}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                </div>
+                <div class="flex-child">
+                    <h4>{{$vid->Title}} <br></h4>
+                    <h2>{{$vid->Description}}<br></h2>
+
+                <br><br><a href="/video/{{$vid->id}}">Comment Section</a>
+
+                @if (Auth::user()->role == 'Editor' or Auth::user()->role == 'Admin')
+                <a href="/video/edit/{{$vid->id}}"> Edit Video Information. </a>
+                @if (Auth::user()->role == 'Admin')
+                <form method="POST" action="{{action( [App\Http\Controllers\VideoController::class, 'destroy'], $vid->id ) }}">@csrf @method('DELETE')<input type="submit" value="DELETE VIDEO"></form>
+                @endif
+                @endif
+                </div>
+            </div>
+
+        @endforeach
+
 
     </section>
-
-
-
 
     <footer class="end">
         <h1>COPYRIGHT @ REINIS MOLODCOVS 2021</h1>
