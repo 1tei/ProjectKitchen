@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('Users')->insert([
             'id' => '1',
-            'Username' => 'Admin',
+            'name' => 'Admin',
             'email' => 'admin@projectkitchen',
             'password' => Hash::make('Admin'),
             'role' => 'Admin',
@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('Users')->insert([
             'id' => '2',
-            'Username' => 'Editor',
+            'name' => 'Editor',
             'email' => 'Editor@projectkitchen',
             'password' => Hash::make('Editor'),
             'role' => 'Editor',
@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('Users')->insert([
             'id' => '3',
-            'Username' => 'User1',
+            'name' => 'User1',
             'email' => 'User1@projectkitchen',
             'password' => Hash::make('User'),
             'role' => 'User',
@@ -51,7 +51,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('Users')->insert([
             'id' => '4',
-            'Username' => 'User2',
+            'name' => 'User2',
             'email' => 'User2@projectkitchen',
             'password' => Hash::make('User'),
             'role' => 'User',
@@ -61,7 +61,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('Users')->insert([
             'id' => '5',
-            'Username' => 'User3',
+            'name' => 'User3',
             'email' => 'User3@projectkitchen',
             'password' => Hash::make('User'),
             'role' => 'User',

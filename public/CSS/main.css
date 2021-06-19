@@ -50,7 +50,7 @@ section.header ul {
 }
 section.header li:last-child {
 	position: absolute;
-	margin-left: 120vh;
+	margin-left: 80%;
 }
 section.header li {
 	left: 200px;
@@ -130,63 +130,11 @@ section.banner div.banner-bg {
 	z-index: 1;
 }
 
-/* VIDEO
-section.video {
-	font-family: Montserrat-Light;
-	background-color: rgb(50, 50, 50);
-	padding: 100px 300px 300px 300px;
-	justify-content:center;
-	align-content: center;
-}
-section.video h2{
-	color:white;
-	text-align: left;
-	font-size:50px;
-	margin: 0 0 10vh -28vh;
-}
-section.video pre {
-	color:white;
-}
-section.video ol {
-	display: grid;
-	grid-template: 100% /auto auto;
-	justify-content: center;
-	grid-gap: 100px;
-	padding-bottom: 40px;
-}
-section.video iframe {
-	padding-top: 40px;
-}
-section.video div.frame:before,
-section.video div.frame:after,
-section.video div.frame > :last-child:before,
-section.video div.frame > :last-child:after {
-	position: absolute;
-	width: 100px;
-	height: 100px;
-	border-color: white;
-	border-style: solid;
-	content: ' ';
-}
-section.video div.frame:before {
-	top: 1180px;
-	left: 330px;
-	border-width: 3px 0 0 3px;
-}
-section.video div.frame:after {
-	top: 1480px;
-	left: 870px;
-	border-width: 3px 3px 0 0;
-	transform: rotate(90deg);
-} */
-
 /*GALLERY*/
 section.gallery {
 	width: 100%;
 	height: 100vh;
 	overflow: hidden;
-	background-color: rgb(50, 50, 50);
-	padding-bottom: 35vh;
 }
 section.gallery h2 {
 	font-family: Montserrat-Light;
@@ -309,131 +257,6 @@ section.gallery div.fade {
   to {opacity: 1}
 }
 
-/* CHEFS
-section.chefs {
-	font-family: Montserrat-Light;
-	width: 100%;
-	height: 100vh;
-	padding-top: 8vh;
-	background-color: rgb(50, 50, 50);
-}
-section.chefs ul {
-	display: flex;
-	justify-content: space-evenly;
-	margin-top: 10vh;
-}
-section.chefs li {
-	position: relative;
-}
-section.chefs a{
-	text-decoration: none;
-}
-section.chefs h2{
-	margin-bottom: -9vh;
-	color:white;
-	font-size: 50px;
-	text-align:left;
-	margin-left: 32px;
-}
-section.chefs img {
-	height: 40vh;
-}
-section.chefs li.current{
-	z-index: 10;
-}
-section.chefs li:hover img {
-	transition: 2s;
-	transform: scale(1.2);
-}
-section.chefs div.text {
-	text-transform: uppercase;
-	text-align: center;
-}
-section.chefs div#divpar p {
-	font-family: Montserrat-Thin;
-	font-size: 20px;
-	color:white;
-	padding-top:15px;
-}
-section.chefs div#divpar h3 {
-	font-family: Montserrat-Bold;
-	margin: 15vh 10vh 0 10vh;
-	font-size:28px;
-	color:white;
-}
-.hide-item::after {
-	margin: -5px;
-	position: absolute;
-	content: '';
-	top: 0;
-	bottom: 100%;
-	left: 0;
-	right: 0;
-	background-color: rgb(50, 50, 50);
-	animation: hide-animation;
-	animation-duration: 1s;
-	animation-iteration-count: 1;
-}
-@keyframes hide-animation{
-0% { clip-path: inset(0 0 100% 0); }
-100% { clip-path: inset(0); }
-}
-.hide:hover .hide-item::after,
-.hide:focus .hide-item::after {
-	z-index: 1;
-	bottom: 0;
-} */
-
-/*FOOTER*/
-section.footer {
-	width: 100%;
-	background-color: rgb(50, 50, 50);
-    color:white;
-    padding-top:5px;
-    left: 50%;
-}
-section.footer div.contacts {
-    text-align:center;
-}
-section.footer li{
-    justify-content: center;
-	color: white;
-	font-size:80%;
-	line-height: 15px;
-}
-
-section.footer a {
-    justify-content: center;
-	text-decoration: none;
-	font-family: Montserrat-Light;
-	color: white;
-	text-rendering: geometricPrecision;
-	display: block;
-	margin-bottom: 5px;
-	color: white;
-	font-size: 12px;
-	transition: transform .2s cubic-bezier(0.55, 0, 0.55, 0.2);
-}
-section.footer a:hover {
-	transform: scale(1.1);
-}
-
-section.footer h2{
-	font-family: Montserrat-Light;
-    color: white;
-    margin-bottom: 3vh;
-}
-section.footer a.link{
-	font-size: 12px;
-	display: flex;
-}
-section.footer img {
-    margin-right: 20px;
-    width: 50%;
-    background-size: cover;
-    background-position: center;
-    aspect-ratio: 1/1;
-}
 footer.end {
 	font-family: Montserrat-Light;
 	font-size: 12px;
@@ -488,6 +311,15 @@ section.recipes div.flex-child:last-child {
     margin-top:8vh;
 }
 
+section.recipes a {
+    text-decoration: none;
+	font-family: Montserrat-Light;
+	color: white;
+    display: block;
+    color: white;
+    font-size: 130%;
+}
+
 section.recipes img{
     height: 250px;
     width: 210px;
@@ -506,11 +338,12 @@ body {
     background-color: rgb(50, 50, 50);
 }
 
+
+
 section.comments h2{
         font-family: Montserrat-Light;
         font-size: 20px;
         color:white;
         text-align: center;
     }
-}
 

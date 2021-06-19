@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,11 +20,23 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('main');
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 
+
 Route::get('/recipes', [RecipeController::class, 'index']);
 
-Route::get('/recipe/{id}', [RecipeController::class, 'show']);
+Route::get('/recipes/create', [RecipeController::class, 'create']);
+Route::post('/recipes', [RecipeController::class, 'store']);
+
+Route::delete('/recipe/{id}', [RecipeController::class, 'destroy']);
+Route::delete('/recipes/{id}', [CommentController::class, 'destroy']);
+
+Route::get('/recipe/edit/{id}', [RecipeController::class, 'edit']);
+Route::post('/recipes', [RecipeController::class, 'update']);
+
+Route::get('/recipe/{id}', [CommentController::class, 'show']);
+Route::post('/recipe/{id}', [CommentController::class, 'store']);
+

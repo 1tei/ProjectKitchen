@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\models\RecipeModel;
+use App\models\IngredientModel;
+use App\models\RecipeRatingModel;
+use App\models\RecipeCommentModel;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -18,8 +21,14 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        $Recipes = DB::table('Recipe')->get();
-        return view('recipe_page', compact('Recipes'));
+
+        if (!Auth::check()){
+            return view ('main');
+        }
+        else {
+            $Recipes = DB::table('Recipe')->get();
+            return view('recipe_page', compact('Recipes'));
+        }
     }
 
     /**
@@ -29,7 +38,7 @@ class RecipeController extends Controller
      */
     public function create()
     {
-        //
+       return view('recipe_create');
     }
 
     /**
@@ -38,9 +47,25 @@ class RecipeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-        //
+        $rules = array (
+            'Title' => 'required|min:5',
+            'Description' => 'required|min:10',
+            'Content' => 'required|min:10',
+        );
+
+        $this->validate($request, $rules);
+
+        $recipe = new RecipeModel();
+        $recipe->Author=$request->Author;
+        $recipe->Title=$request->Title;
+        $recipe->Description=$request->Description;
+        $recipe->Content=$request->Content;
+        $recipe->Views=$request->Views;
+        $recipe->save();
+        return redirect('/recipes');
     }
 
     /**
@@ -64,7 +89,8 @@ class RecipeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $recipe = RecipeModel::findOrFail($id);
+        return view('recipe_edit',compact('recipe'));
     }
 
     /**
@@ -76,7 +102,21 @@ class RecipeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = array (
+            'Title' => 'required|min:5',
+            'Description' => 'required|min:10',
+            'Content' => 'required|min:10',
+        );
+
+        $this->validate($request, $rules);
+
+        $recipe = RecipeModel::find($id);
+        $recipe->Author=$request->Author;
+        $recipe->Title=$request->Title;
+        $recipe->Description=$request->Description;
+        $recipe->Content=$request->Content;
+        $recipe->save();
+        return redirect('/recipes');
     }
 
     /**
@@ -87,6 +127,12 @@ class RecipeController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        IngredientModel::where('Ingredient_list.Recipe', $id)->delete();
+        RecipeCommentModel::where('Recipe_comments.Post', $id)->delete();
+        RecipeRatingModel::where('Recipe_ratings.Post', $id)->delete();
+
+        RecipeModel::findOrFail($id)->delete();
+        return redirect('/recipes');
     }
 }

@@ -21,7 +21,7 @@ class RecipesTables extends Migration
             $table->string('Title');
             $table->string('Description');
             $table->text('Content');
-            $table->string('Photo');
+            $table->string('Photo')->default(' ');
             $table->timestamps();
             $table->unsignedBigInteger('Views')->default(0);
         });

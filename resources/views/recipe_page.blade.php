@@ -19,13 +19,11 @@
             <header>
                 <ul class="main-menu">
                     <li class="upper-menu active"><a href="/">HOME</a></li>
-                    <li class="upper-menu"><a href="#gallery">GALLERY</a></li>
-                    <li class="upper-menu"><a href="#top">TOP RECIPES</a></li>
+                    <li class="upper-menu"><a href="/#gallery">GALLERY</a></li>
                     <li class="upper-menu image"><img id="logo-image" src="/images/logowhite.png" alt="logo"></li>
-                    <li class="upper-menu"><a href="#chefs">CHEFS</a></li>
                     <li class="upper-menu"><a href="/recipes" >RECIPES</a></li>
                     <li class="upper-menu"><a href="#footer">VIDEOS</a></li>
-                    <li class="upper-menu">LOGIN</a></li>
+                    <li class="upper-menu"><a href="/login">LOGIN</a></li>
                 </ul>
             </header>
         </div>
@@ -34,6 +32,9 @@
 
     <section class="recipes centrs " id="recipes">
 
+        @if (Auth::user()->role == 'Editor' or Auth::user()->role == 'Admin')
+            <a href="/recipes/create"> Create new Recipe. </a>
+        @endif
 
             @foreach ($Recipes as $recipe)
 
@@ -46,6 +47,13 @@
                     <h2>{{$recipe->Description}}<br></h2>
 
                 <br><br><a href="/recipe/{{$recipe->id}}">View Recipe</a>
+
+                @if (Auth::user()->role == 'Editor' or Auth::user()->role == 'Admin')
+                <a href="/recipe/edit/{{$recipe->id}}"> Edit Recipe Information. </a>
+                @if (Auth::user()->role == 'Admin')
+                <form method="POST" action="{{action( [App\Http\Controllers\RecipeController::class, 'destroy'], $recipe->id ) }}">@csrf @method('DELETE')<input type="submit" value="DELETE RECIPE"></form>
+                @endif
+                @endif
                 </div>
             </div>
 

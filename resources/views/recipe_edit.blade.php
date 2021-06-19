@@ -30,47 +30,40 @@
     </section>
 
 
+
     <section class="recipes centrs" id="recipes">
-        @foreach ($Recipes as $recipe)
-        <h4>{{$recipe->Title}} <br></h4>
-        <div class="flex-container">
-                <img src="{{$recipe->Photo}}" alt="picture">
-                <h2>{{$recipe->Content}}
-        </div>
-        @endforeach
+            <h1 style="font-size:20px">CREATE A NEW RECIPE POST:
+            <br><br>
+            <h2>
+            <form method="POST" action="{{action([App\Http\Controllers\RecipeController::class, 'update'], $recipe->id)  }}">
+                @csrf
+               <input type="hidden" name="id" value="{{ $recipe->id }}">
+               <input type="hidden" name="Author" value="{{Auth::user()->id}}">
 
-        <form method="POST" action="{{action([App\Http\Controllers\CommentController::class, 'store'], $recipe->id)}}">
-            @csrf
-            <input type="hidden" name="Author" value="{{ Auth::user()->id }}">
-            <input type="hidden" name="Post" value="{{$recipe->id}}">
+               <label for="Title">Title: </label>
+               <input type="text" name="Title" id="Title" value="{{ $recipe->Title }}">
+               <br>
+               <label for="Description">Description: </label>
+               <input type="text" name="Description" id="Description" value="{{ $recipe->Description }}">
+               <br>
+               <label for="Content">Content: </label>
+               <input type="text" name="Content" id="Content" value="{{ $recipe->Content }}">
+               <br>
 
-            <label for="Message">Comment: </label><br>
-            <input type="text" name="Message">
+               <p> <input type="submit" value="CONFIRM"> </p>
 
-        <br><br><br><input type="submit" value="CREATE">
-        </h1>
-        </form>
-        <br><br>
-        <hr>
-        <br><br>
-        <h2>
-        <x-auth-validation-errors/>
-        </h2>
-
+               </form>
+               <br><br>
+               <hr>
+               <br><br>
+               <x-auth-validation-errors/>
+               </h2>
 
     </section>
 
-    <section class="comments centrs" id="comments">
-        @foreach ($Recipe_Comments as $recipes)
-        <h2>{{$recipes->Message}}<br>
-        {{$recipes->name}}</h2>
-        @if (Auth::user()->role == 'Editor' or Auth::user()->role == 'Admin')
-            <form method="POST" action="{{action([App\Http\Controllers\CommentController::class, 'destroy'], $recipe->id)}}">
-                @csrf @method('DELETE')
-            <input type="submit" value="delete"></form>
-        @endif
-        @endforeach
-    </section>
+
+
+
     <footer class="end">
         <h1>COPYRIGHT @ REINIS MOLODCOVS 2021</h1>
     </footer>
